@@ -31,9 +31,16 @@ export default function Authenticated({ auth, header, children }) {
                                 }
                                 {
                                     auth.user.is_admin &&
-                                    <NavLink href={route('organizations.index')} active={route().current('organizations.index')}>
-                                        Organizatii
-                                    </NavLink>
+                                    (
+                                        <>
+                                            <NavLink href={route('organizations.index')} active={route().current('organizations.index')}>
+                                                Organizations
+                                            </NavLink>
+                                            <NavLink href={route('logs.index')} active={route().current('logs.index')}>
+                                                Logs
+                                            </NavLink>
+                                        </>
+                                    )
                                 }
                             </div>
                         </div>

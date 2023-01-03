@@ -17,13 +17,16 @@ class OrganizationController extends Controller
     {
         $organizations = Organization::paginate();
 
+        activity()->causedBy(auth()->user())->log("visited page Organizations > Index");
         return Inertia::render('Organizations/Index', compact('organizations'));
     }
 
     public function store(OrganizationRequest $request, OrganizationTransformer $transformer): \Illuminate\Http\RedirectResponse
     {
         try {
-            Organization::create($transformer->transform($request->all()));
+            $organization = Organization::create($transformer->transform($request->all()));
+
+            activity()->performedOn($organization)->causedBy(auth()->user())->log("created an Organization");
         } catch (\Exception $exception) {
             $this->sendDebugLogs(self::class, $exception);
 
@@ -37,6 +40,8 @@ class OrganizationController extends Controller
     {
         try {
             $organization->delete();
+
+            activity()->performedOn($organization)->causedBy(auth()->user())->log("deleted an Organization");
         } catch (\Exception $exception) {
             $this->sendDebugLogs(self::class, $exception);
 
@@ -50,6 +55,8 @@ class OrganizationController extends Controller
     {
         try {
             $organization->update($transformer->transform($request->all()));
+
+            activity()->performedOn($organization)->causedBy(auth()->user())->log("updated an Organization");
         } catch (\Exception $exception) {
             $this->sendDebugLogs(self::class, $exception);
 

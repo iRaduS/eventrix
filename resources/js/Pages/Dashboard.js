@@ -68,6 +68,24 @@ export default function Dashboard(props) {
                                                 <div>
                                                     <small className="text-gray-500">{eveniment.description}</small>
                                                 </div>
+
+                                                {
+                                                    eveniment.weatherData.main ?
+                                                        <div>
+                                                            <small
+                                                                className="text-yellow-400">{eveniment.weatherData.main.temp}°C</small>
+                                                            <br/>
+                                                            <small className="text-red-600">
+                                                                <strong>MAX: {eveniment.weatherData.main.temp_max}°C</strong>
+                                                            </small>
+                                                            <br/>
+                                                            <small className="text-blue-800">
+                                                                <strong>MIN: {eveniment.weatherData.main.temp_min}°C</strong>
+                                                            </small>
+                                                        </div>
+                                                        : <small className="text-red-600">No data aboutt weather!</small>
+                                                }
+
                                                 <div className="mt-4">
                                                     {
                                                         eveniment.users.length <= eveniment.participants && !eveniment.closed && !eveniment.users.some(user => user.id === props.auth.user.id)?

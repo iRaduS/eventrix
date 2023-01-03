@@ -45,7 +45,8 @@ export default function Index(props) {
                             <tr className="font-bold text-left">
                                 <th className="px-6 pt-5 pb-4">Name</th>
                                 <th className="px-6 pt-5 pb-4">Dates</th>
-                                <th className="px-6 pt-5 pb-4">Total Participants</th>
+                                <th className="px-6 pt-5 pb-4">Weather</th>
+                                <th className="px-6 pt-5 pb-4">Participants</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,30 @@ export default function Index(props) {
                                                 className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                                             >
                                                 <small className="text-gray-500">{eveniment.started_at} - {eveniment.ended_at}</small>
+                                            </InertiaLink>
+                                        </td>
+                                        <td className="border-t">
+                                            <InertiaLink
+                                                tabIndex="-1"
+                                                href={route('eveniments.edit', eveniment.id)}
+                                                className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
+                                            >
+                                                {
+                                                    eveniment.weatherData.main ?
+                                                    <div>
+                                                        <small
+                                                            className="text-yellow-400">{eveniment.weatherData.main.temp}°C</small>
+                                                        <br/>
+                                                        <small className="text-red-600">
+                                                            <strong>MAX: {eveniment.weatherData.main.temp_max}°C</strong>
+                                                        </small>
+                                                        <br/>
+                                                        <small className="text-blue-800">
+                                                            <strong>MIN: {eveniment.weatherData.main.temp_min}°C</strong>
+                                                        </small>
+                                                    </div>
+                                                    : <small className="text-red-600">No data about weather!</small>
+                                                }
                                             </InertiaLink>
                                         </td>
                                         <td className="border-t">
