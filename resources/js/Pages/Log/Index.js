@@ -72,8 +72,7 @@ export default function Index(props) {
                                             {activity.description || ''}
                                         </td>
                                         <td className="border-t text-green-700 text-center">
-                                            {`
-                        }${activity.causer_type} ID:${activity.causer_id}` || ''}
+                                            {`${activity.causer_type} ID:${activity.causer_id}` || ''}
                                         </td>
                                         <td className="w-px border-t text-red-700 text-center">
                                             {`${activity.subject_type} ID:${activity.subject_id}` || ''}

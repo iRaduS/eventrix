@@ -135,7 +135,7 @@ export default function Dashboard(props) {
                                             <div className="shadow-sm bg-white w-full flex items-center justify-center py-12 px-6" key="1">
                                                 <div className="text-4xl rounded-full h-24 w-24 flex items-center text-white justify-center bg-green-500 mx-3">
                                                 {
-                                                    props.eveniments.reduce((previous, current) => current.type === 1 ? previous + 1 : previous, 0)
+                                                    props.eveniments.reduce((previous, current) => current.type == 1 ? previous + 1 : previous, 0)
                                                 }
                                                 </div>
                                                 <div className="text-xl text-black">{toEventType(1)}</div>
@@ -143,7 +143,7 @@ export default function Dashboard(props) {
                                             <div className="shadow-sm bg-white w-full flex items-center justify-center py-12 px-6" key="2">
                                                 <div className="text-4xl rounded-full h-24 w-24 flex items-center text-white justify-center bg-green-500 mx-3">
                                                     {
-                                                        props.eveniments.reduce((previous, current) => current.type === 2 ? previous + 1 : previous, 0)
+                                                        props.eveniments.reduce((previous, current) => current.type == 2 ? previous + 1 : previous, 0)
                                                     }
                                                 </div>
                                                 <div className="text-xl text-black">{toEventType(2)}</div>
@@ -151,7 +151,7 @@ export default function Dashboard(props) {
                                             <div className="shadow-sm bg-white w-full flex items-center justify-center py-12 px-6" key="3">
                                                 <div className="text-4xl rounded-full h-24 w-24 flex items-center text-white justify-center bg-green-500 mx-3">
                                                     {
-                                                        props.eveniments.reduce((previous, current) => current.type === 3 ? previous + 1 : previous, 0)
+                                                        props.eveniments.reduce((previous, current) => current.type == 3 ? previous + 1 : previous, 0)
                                                     }
                                                 </div>
                                                 <div className="text-xl text-black">{toEventType(3)}</div>

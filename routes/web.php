@@ -28,19 +28,6 @@ Route::get('/dashboard', function () {
     if ($organization > 0) {
         $eveniments = \App\Models\Eveniment::with('users')->where('organization_id', $organization)->get();
 
-        $weatherAppToken = env('OPENWEATHER_API_TOKEN');
-
-        foreach ($eveniments as $eveniment) {
-            if (!Cache::has("eveniments.weather.{$eveniment->id}")) {
-                $response = Http::get("https://api.openweathermap.org/data/2.5/weather?lat={$eveniment->lat}&lon={$eveniment->long}&excluded=minutely,hourly,daily,alerts&appid={$weatherAppToken}&units=metric");
-
-                Cache::add("eveniments.weather.{$eveniment->id}", $response->json(), 5 * 60);
-                $eveniment->weatherData = $response->json();
-            } else {
-                $eveniment->weatherData = Cache::get("eveniments.weather.{$eveniment->id}");
-            }
-        }
-
         return Inertia::render('Dashboard', compact('eveniments'));
     } else {
         $eveniments = \App\Models\Eveniment::with('users')->paginate();
